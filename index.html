@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario DS-160</title>
+    <meta name="description" content="Formulario datos del solicitante">
+    <meta name="author" content="Trámite de Visas Americanas">
+    <link rel="shortcut icon" href="logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    <script src="app.js"></script>
+    <style>
+        .img {
+            height: 115px;
+            width: 100px;
+        }
+
+        .boton {
+            background-color: #01324d;
+            color: white;
+            padding: 10px 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .boton:hover {
+            background-color: #094e6d
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h2 align="center"><img src="logo.png" alt="..." class="img"><br>Formulario DS-160</h2>
+                <hr>
+                <form id="form">
+
+                    <!--                     <div class="row mb-3">
+                        <div class="col-md-6">
+                            <labelclass="form-label"></label>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ds_160" class="form-label"><strong>DS-160:</strong></label>
+                            <input type="text" class="form-control" id="DS_160" placeholder="Ingresa el DS-160">
+                        </div>
+                    </div> -->
+
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label"><strong>Nombre completo:</strong></label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ingresa nombre completo"
+                            required>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="fecha_nacimiento" class="form-label"><strong>Fecha de
+                                    nacimiento:</strong></label>
+                            <input type="date" class="form-control" id="fecha_nacimiento" placeholder="DD/MM/AA">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="lugar_nacimiento" class="form-label"><strong>Lugar de
+                                    nacimiento:</strong></label>
+                            <input type="text" class="form-control" id="lugar_nacimiento"
+                                placeholder="Municipio de nacimiento">
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="pasaporte" class="form-label"><strong>Número de pasaporte:</strong></label>
+                            <input type="text" class="form-control" id="pasaporte"
+                                placeholder="Ingresa el número del pasaporte">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="lugar_expedicion" class="form-label"><strong>Lugar de
+                                    expedición:</strong></label>
+                            <input type="text" class="form-control" id="lugar_expedicion"
+                                placeholder="Ingresa el lugar de expedición">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="expedicion" class="form-label"><strong>Expedición</strong></label>
+                            <input type="date" class="form-control" id="expedicion" placeholder="DD/MM/AA">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="caducidad" class="form-label"><strong>Caducidad</strong></label>
+                            <input type="date" class="form-control" id="caducidad" placeholder="DD/MM/AA">
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="curp" class="form-label"><strong>CURP</strong></label>
+                        <input type="text" class="form-control" id="curp" placeholder="Ingresa la CURP">
+                        &nbsp;<a href="https://www.gob.mx/curp/">Consultar CURP</a>
+                    </div>
+
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="domicilio" class="form-label"><strong>Calle:</strong></label>
+                            <input type="text" class="form-control" id="domicilio"
+                                placeholder="Nombre de la calle o avenida">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="numero_casa" class="form-label"><strong>Número exterior:</strong></label>
+                            <input type="text" class="form-control" id="numero_casa"
+                                placeholder="Número exterior o interior">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="colonia" class="form-label"><strong>Municipio o colonia:</strong></label>
+                            <input type="text" class="form-control" id="colonia"
+                                placeholder="Municipio, colonia o barrio">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cp" class="form-label"><strong>CP:</strong></label>
+                            <input type="text" class="form-control" id="cp" placeholder="Código postal">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="telefono" class="form-label"><strong>Número de Teléfono:</strong></label>
+                            <input type="text" class="form-control" id="telefono"
+                                placeholder="Ingrese el número de télefono">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telefono_alt" class="form-label"><strong>Número Alterno:</strong></label>
+                            <input type="text" class="form-control" id="telefono_alt"
+                                placeholder="Teléfono de algún familiar">
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="papa" class="form-label"><strong>Nombre del Padre:</strong></label>
+                            <input type="text" class="form-control" id="papa" placeholder="Nombre completo del padre">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="fecha_papa" class="form-label"><strong>Fecha de nacimiento:</strong></label>
+                            <input type="date" class="form-control" id="fecha_papa"
+                                placeholder="Fecha de nacimiento del padre">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="mama" class="form-label"><strong>Nombre de la Madre:</strong></label>
+                            <input type="text" class="form-control" id="mama" placeholder="Nombre completo de la madre">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="fecha_mama" class="form-label"><strong>Fecha de nacimiento:</strong></label>
+                            <input type="date" class="form-control" id="fecha_mama"
+                                placeholder="Fecha de nacimiento de la madre">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="esposo" class="form-label"><strong>Nombre esposa(o):</strong></label>
+                            <input type="text" class="form-control" id="esposo"
+                                placeholder="Nombre completo del esposa(o)">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="fecha_esposo" class="form-label"><strong>Fecha de nacimiento:</strong></label>
+                            <input type="date" class="form-control" id="fecha_esposo"
+                                placeholder="Fecha de nacimiento de esposa(o)">
+                        </div>
+                    </div>
+
+
+
+                    <div class="mb-3">
+                        <label for="trabajo" class="form-label"><strong>Trabajo:</strong></label>
+                        <input type="text" class="form-control" id="trabajo"
+                            placeholder="Describe a que se dedica el solicitante">
+                    </div>
+
+                    <hr>
+
+                    <div class="mb-3">
+                        <label for="titulo" class="form-label"><strong>Titulo profesional:</strong></label>
+                        <input type="text" class="form-control" id="titulo"
+                            placeholder="Ingresa la profesión del solicitante">
+                    </div>
+
+                    <!--                     <div class="mb-3">
+                        <label for="comentarios" class="form-label"><strong>Comentarios:</strong></label>
+                        <input type="text" class="form-control" id="comentarios"
+                            placeholder="Describe si existe algún detalle o comentario">
+                    </div> -->
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="escuela" class="form-label"><strong>Nombre de la institución del último grado de
+                                    estudios:</strong></label>
+                            <input type="text" class="form-control" id="escuela" placeholder="Nombre de la institución">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="numero_escuela" class="form-label"><strong>Número de contacto:</strong></label>
+                            <input type="text" class="form-control" id="numero_escuela"
+                                placeholder="Número de teléfono de la institución">
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="direccion_escuela" class="form-label"><strong>Dirección de la
+                                institución:</strong></label>
+                        <input type="text" class="form-control" id="direccion_escuela"
+                            placeholder="Ingresa datos de estudios del solicitante">
+                    </div>
+
+                    <hr>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="conocido" class="form-label"><strong>Nombre del familiar o conocido en
+                                    EE.UU:</strong></label>
+                            <input type="text" class="form-control" id="conocido"
+                                placeholder="Nombre del contacto en EE.UU.">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="numero_conocido" class="form-label"><strong>Número del
+                                    contacto:</strong></label>
+                            <input type="text" class="form-control" id="numero_conocido"
+                                placeholder="Número de teléfono del contacto en EE.UU.">
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="direccion_conocido" class="form-label"><strong>Dirección del contacto en
+                                EE.UU:</strong></label>
+                        <input type="text" class="form-control" id="direccion_conocido"
+                            placeholder="Ingresa la dirección del contacto en EE.UU.">
+                    </div>
+
+                    <!--                     <hr>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="correo" class="form-label"><strong>Correo electronico:</strong></label>
+                            <input type="email" class="form-control" id="correo" placeholder="Ingresa el correo">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="contraseña" class="form-label"><strong>Contraseña:</strong></label>
+                            <input type="text" class="form-control" id="contraseña" placeholder="Ingresa la contraseña">
+                        </div>
+                    </div> -->
+
+
+                    <div align="center" class="p-3">
+                        <button type="submit" class="boton" align="center"><strong>Generar DS-160</strong></button>
+                    </div><br>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
